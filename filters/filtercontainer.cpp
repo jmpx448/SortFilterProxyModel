@@ -78,7 +78,7 @@ FilterContainerAttached::FilterContainerAttached(QObject* object) : QObject(obje
     m_filter(qobject_cast<Filter*>(object))
 {
     if (!m_filter)
-        qmlWarning(object) << "FilterContainer must be attached to a Filter";
+        qWarning() << "FilterContainer must be attached to a Filter";
 }
 
 FilterContainerAttached::~FilterContainerAttached()
@@ -106,7 +106,7 @@ void FilterContainerAttached::setContainer(QObject* object)
 
     FilterContainer* container = qobject_cast<FilterContainer*>(object);
     if (object && !container)
-        qmlWarning(parent()) << "container must inherits from FilterContainer, " << object->metaObject()->className() << " provided";
+        qWarning() << "container must inherits from FilterContainer, " << object->metaObject()->className() << " provided";
 
     if (m_container && m_filter)
         qobject_cast<FilterContainer*>(m_container.data())->removeFilter(m_filter);

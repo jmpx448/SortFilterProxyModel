@@ -78,7 +78,7 @@ SorterContainerAttached::SorterContainerAttached(QObject* object) : QObject(obje
     m_sorter(qobject_cast<Sorter*>(object))
 {
     if (!m_sorter)
-        qmlWarning(object) << "SorterContainerAttached must be attached to a Sorter";
+        qWarning() << "SorterContainerAttached must be attached to a Sorter";
 }
 
 SorterContainerAttached::~SorterContainerAttached()
@@ -106,7 +106,7 @@ void SorterContainerAttached::setContainer(QObject* object)
 
     SorterContainer* container = qobject_cast<SorterContainer*>(object);
     if (object && !container)
-        qmlWarning(parent()) << "container must inherits from SorterContainer, " << object->metaObject()->className() << " provided";
+        qWarning() << "container must inherits from SorterContainer, " << object->metaObject()->className() << " provided";
 
     if (m_container && m_sorter)
         qobject_cast<SorterContainer*>(m_container.data())->removeSorter(m_sorter);
